@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bill Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Monthly Bill Tracker</h1>
+
+    <h2>Payment and Organizer</h2>
+
+    <section>
+      <p>Add a bill</p>
+      <form action="/bills" method="POST">
+        <label for="companyBill">Company/Bill:</label>
+        <input type="text" placeholder="Sprint/Cellphone " name="companyBill" />
+        <label for="dateOfBill">Due Date:</label>
+        <input type="date" id="dateOfbill" name="dateOfBill" />
+        <label for="amount">Amount:</label>
+        <input type="text" placeholder="$128.00" name="amount" />
+        <label for="paymentStatus">Payment Status:</label>
+        <select name="paymentStatus" id="paymentStatus">
+          <option value="blank"></option>
+          <!-- <option value="paid">Paid</option> -->
+          <option value="unpaid">Unpaid</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+      <table>
+        <thead>
+          <tr>
+            <th>Company/Bill</th>
+            <th>Due Date</th>
+            <th>Amount</th>
+            <th>Payment Status</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i<bills.length; i++) {%>
+          <tr>
+            <td><%= bills[i].companyBill %></td>
+            <td><%= bills[i].dateOfBill %></td>
+            <td><%= bills[i].amount %></td>
+            <td><button class="paid" value="<%=bills[i]._id%>"><%= bills[i].paymentStatus%></button></td>
+            <td><button value="<%=bills[i]._id%>" class="fa fa-trash" aria-hidden="true"> </button> </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    
+
+    <script src="main.js"></script>
+  </body>
+</html>
